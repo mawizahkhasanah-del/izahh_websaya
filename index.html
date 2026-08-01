@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Izahh — Player Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14101f;
+    --surface: #211a33;
+    --surface-2: #2b2244;
+    --accent: #ffb020;
+    --accent-soft: #ffb02033;
+    --online: #6ee7b7;
+    --text: #ede9fe;
+    --muted: #948aad;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    background-image:
+      radial-gradient(circle at 10% 10%, #ffb02012, transparent 40%),
+      radial-gradient(circle at 90% 30%, #6ee7b712, transparent 40%);
+  }
+  .pixel { font-family: 'Press Start 2P', monospace; }
+
+  .hud {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--surface);
+    border-bottom: 2px solid var(--accent-soft);
+    display: flex; overflow-x: auto;
+  }
+  .hud a {
+    flex: 0 0 auto;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.7rem;
+    padding: 16px 18px;
+    border-right: 1px solid #ffffff10;
+    white-space: nowrap;
+  }
+  .hud a:hover { color: var(--accent); background: var(--surface-2); }
+
+  section { max-width: 760px; margin: 0 auto; padding: 56px 20px; }
+
+  .player-card {
+    background: linear-gradient(160deg, var(--surface), var(--surface-2));
+    border: 2px solid var(--accent-soft);
+    border-radius: 4px;
+    padding: 32px 24px;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+  }
+  .eyebrow {
+    font-size: 0.6rem;
+    color: var(--online);
+    letter-spacing: 0.1em;
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 18px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--online); box-shadow: 0 0 8px var(--online); }
+  .player-card h1 { font-size: 1.6rem; margin-bottom: 6px; }
+  .player-card .tagline { color: var(--muted); font-size: 0.85rem; margin-bottom: 20px; }
+  .level-tag {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.65rem;
+    padding: 6px 12px;
+    border: 1px solid var(--accent);
+  }
+
+  h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.95rem;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+  h2 span { color: var(--muted); font-size: 0.7rem; }
+
+  .terminal {
+    background: #0d0a17;
+    border: 1px solid #ffffff15;
+    border-radius: 6px;
+    padding: 20px;
+    font-size: 0.9rem;
+    line-height: 1.9;
+  }
+  .terminal .prompt { color: var(--online); }
+  .terminal .val { color: var(--text); }
+  .terminal .label { color: var(--muted); }
+
+  .ring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 24px;
+  }
+  .ring-item { text-align: center; }
+  .ring-item svg { transform: rotate(-90deg); }
+  .ring-bg { fill: none; stroke: #ffffff12; stroke-width: 10; }
+  .ring-fg { fill: none; stroke: var(--accent); stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset 1s ease; }
+  .ring-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto 10px; }
+  .ring-pct {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: bold;
+  }
+  .ring-name { font-size: 0.8rem; color: var(--muted); }
+
+  .quest-list { display: flex; flex-direction: column; gap: 12px; }
+  .quest {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.85rem;
+  }
+  .quest .tag { color: var(--muted); font-size: 0.65rem; }
+
+  footer {
+    text-align: center; padding: 30px 20px; color: var(--muted);
+    font-size: 0.7rem; border-top: 1px solid #ffffff10;
+  }
+</style>
+</head>
+<body>
+
+<nav class="hud">
+  <a href="#profil">PROFIL</a>
+  <a href="#tentang">TENTANG</a>
+  <a href="#skill">SKILL</a>
+  <a href="#kontak">KONTAK</a>
+</nav>
+
+<section id="profil">
+  <div class="player-card">
+    <div class="eyebrow"><span class="dot"></span> STATUS: SEDANG BELAJAR</div>
+    <h1>Izahh</h1>
+    <p class="tagline">Pelajar yang lagi merintis jalan jadi web developer 🎮</p>
+    <span class="level-tag">LV. 1 — PEMULA</span>
+  </div>
+</section>
+
+<section id="tentang">
+  <h2>Tentang <span>// player.info</span></h2>
+  <div class="terminal">
+    <div><span class="prompt">&gt;</span> <span class="label">status:</span> <span class="val">pelajar</span></div>
+    <div><span class="prompt">&gt;</span> <span class="label">sedang_dipelajari:</span> <span class="val">membuat website dari nol</span></div>
+    <div><span class="prompt">&gt;</span> <span class="label">tujuan:</span> <span class="val">terus naik level jadi lebih jago coding</span></div>
+    <div><span class="prompt">&gt;</span> <span class="label">hobi:</span> <span class="val">bermain game</span></div>
+    <div><span class="prompt">&gt;</span> <span class="label">project_ini:</span> <span class="val">website pertama, dibuat dari HP via GitHub + Vercel</span></div>
+  </div>
+</section>
+
+<section id="skill">
+  <h2>Skill <span>// stat.wheel</span></h2>
+  <div class="ring-grid" id="ringGrid">
+    <div class="ring-item">
+      <div class="ring-wrap">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="ring-bg" cx="60" cy="60" r="50"/>
+          <circle class="ring-fg" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="126"/>
+        </svg>
+        <div class="ring-pct">60%</div>
+      </div>
+      <div class="ring-name">HTML</div>
+    </div>
+    <div class="ring-item">
+      <div class="ring-wrap">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="ring-bg" cx="60" cy="60" r="50"/>
+          <circle class="ring-fg" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="188"/>
+        </svg>
+        <div class="ring-pct">40%</div>
+      </div>
+      <div class="ring-name">CSS</div>
+    </div>
+    <div class="ring-item">
+      <div class="ring-wrap">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="ring-bg" cx="60" cy="60" r="50"/>
+          <circle class="ring-fg" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="251"/>
+        </svg>
+        <div class="ring-pct">20%</div>
+      </div>
+      <div class="ring-name">JavaScript</div>
+    </div>
+  </div>
+</section>
+
+<section id="kontak">
+  <h2>Kontak <span>// quest.log</span></h2>
+  <div class="quest-list">
+    <div class="quest"><span>📱 08☆☆☆☆-xxxx</span><span class="tag">WA</span></div>
+    <div class="quest"><span>📍 Indonesia</span><span class="tag">LOKASI</span></div>
+  </div>
+</section>
+
+<footer>Dibuat oleh Izahh · 2026 · di-deploy pakai GitHub + Vercel</footer>
+
+</body>
+  </html>
